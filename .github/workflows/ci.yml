@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install deps
+        working-directory: 搭建器
+        run: npm ci
+
+      - name: Build (Vite, four page entries)
+        working-directory: 搭建器
+        run: npm run build
+
+      - name: Assert build produced all page entries
+        working-directory: 搭建器
+        run: |
+          for f in index.html studio.html cards.html view.html consumer.config.js; do
+            if [ ! -f "dist/$f" ]; then
+              echo "MISSING dist/$f"; exit 1
+            fi
+          done
+          echo "dist entries OK"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Syntax check delivery gates
+        run: python -m py_compile "搭建器/tests/verify_builder.py" "搭建器/tests/verify_studio.py"
+
+      - name: Secret and internal-address scan
+        run: |
+          set -euo pipefail
+          PATTERN='BEGIN (RSA |EC )?PRIVATE KEY|ghp_[A-Za-z0-9]{6,}|gho_[A-Za-z0-9]{6,}|sk-[A-Za-z0-9]{6,}|appSecret[[:space:]]*[:=]'
+          if grep -rInE --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=dist "$PATTERN" . ; then
+            echo "credential-shaped content found"; exit 1
+          fi
+          echo "no credential-shaped content"

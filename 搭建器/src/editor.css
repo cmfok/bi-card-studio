@@ -1,0 +1,70 @@
+/* 三栏外壳 ＋ 组件视觉。色值全走 var(--x)，尺寸凡「要随卡片缩放」的一律 cqw。 */
+.shell { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+.top {
+  display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+  background: var(--card); border-bottom: 1px solid var(--line);
+}
+.top h1 { font-size: 15px; margin: 0 8px 0 0; letter-spacing: -.2px; }
+.top .sp { flex: 1; }
+.top .asof { font-size: 12px; color: var(--sub); }
+.panes { display: grid; grid-template-columns: 190px 1fr 260px; gap: 0; min-height: 0; }
+.pane { overflow: auto; background: var(--card); border-right: 1px solid var(--line); }
+.pane-r { border-right: 0; border-left: 1px solid var(--line); }
+.mid { padding: 10px; background: var(--canvas); overflow: auto; }
+
+.pal-h { font-size: 11px; color: var(--sub); padding: 10px 12px 4px; letter-spacing: .06em; }
+.pal-item {
+  display: block; width: calc(100% - 20px); margin: 0 10px 6px; text-align: left;
+  font-size: 13px; padding: 7px 10px; background: var(--canvas);
+}
+.pal-item:hover { background: var(--mint-soft); }
+
+.canvas { position: relative; min-height: 100%; background: var(--card); border: 1px solid var(--line); border-radius: var(--r1); }
+/* inline-size（不是 size）：cqw 够用，且不把固有高度归零，内容驱动高度才量得到 */
+.grid-stack-item-content { container-type: inline-size; padding: 0; overflow: visible; }
+.canvas .grid-stack { min-height: 100%; }
+
+.w { height: 100%; display: flex; flex-direction: column; border: 1px solid var(--line); border-radius: var(--r2); background: var(--card); overflow: hidden; }
+.w-hug { height: auto; }
+.w-hd { display: flex; align-items: center; gap: 6px; padding: 5px 8px; font-size: 12px; color: var(--sub); cursor: move; }
+.w-t { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.w-tag { font-size: 10px; padding: 1px 5px; border-radius: 999px; background: var(--mint-soft); color: var(--mint); }
+.w-bd { flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: center; padding: 2px 8px 8px; }
+.w-nohd .w-hd { display: none; }
+.w-card { background: var(--canvas); }
+.w-sub { position: absolute; inset: 26px 6px 6px; }
+.is-sel > .w, .is-sel.w { outline: 2px solid var(--mint); outline-offset: -2px; }
+
+.v-num { font-weight: 700; line-height: 1.05; letter-spacing: -.5px; white-space: nowrap; }
+.v-masked { color: var(--sub); }
+.v-text { color: var(--sub); line-height: 1.5; }
+.v-pillwrap { display: flex; }
+.v-pill { font-size: 13px; padding: .3em .95em; border-radius: 999px; background: var(--mint); color: var(--card); white-space: nowrap; }
+.v-pill-plain { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.v-chart { flex: 1; min-height: 0; }
+.v-tablewrap { flex: 1; min-height: 0; overflow: auto; }
+.v-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.v-table th, .v-table td { text-align: left; padding: 5px 6px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+.v-table th { color: var(--sub); font-weight: 500; font-size: .85em; }
+.w-note { font-size: 12px; color: var(--sub); }
+.w-note-bad { color: var(--bad); }
+.w-note-empty { color: var(--warn); }
+
+.float-layer { position: absolute; inset: 0; pointer-events: none; }
+.float-item { position: absolute; pointer-events: auto; container-type: inline-size; }
+.float-drag { opacity: .8; }
+
+.f-head { font-size: 12px; color: var(--mint); padding: 10px 12px 6px; }
+.f-group { font-size: 11px; color: var(--sub); padding: 12px 12px 4px; letter-spacing: .06em; }
+.f-row { display: block; padding: 5px 12px; font-size: 12px; color: var(--sub); }
+.f-row > span { display: block; margin-bottom: 3px; }
+.f-row[hidden] { display: none; }
+.f-span { display: grid; grid-template-columns: 1fr 1fr; gap: 0 8px; }
+.f-tools { padding: 8px 12px; display: flex; gap: 8px; align-items: center; }
+.f-del { color: var(--bad); }
+.f-empty { font-size: 12px; color: var(--sub); padding: 14px 12px; line-height: 1.7; }
+
+@media (max-width: 980px) {
+  .panes { grid-template-columns: 1fr; }
+  .pane, .pane-r { border: 0; border-bottom: 1px solid var(--line); }
+}

@@ -1,0 +1,49 @@
+/* 设计令牌（色值只准出现在本文件 :root 里，其余文件一律 var(--x)）。
+ * 注意：现值取自首个消费方的主题，属待外置项——换成消费方注入的主题包之前，
+ *       本文件是「默认主题」，不是平台规范（外置进度见公开仓 README「消费方接入」一节）。 */
+:root {
+  --canvas: #f5f7f6;
+  --card: #ffffff;
+  --ink: #1b2a24;
+  --sub: #6b7a73;
+  --line: #e3e8e6;
+  --mint: #2bb98a;
+  --mint-soft: #e6f6ef;
+  --warn: #b26a00;
+  --bad: #b00020;
+  --c1: #2bb98a;
+  --c2: #3d7ea6;
+  --c3: #e0a458;
+  --c4: #8a7fb5;
+  --c5: #d1655f;
+  --c6: #6fa8a0;
+  --r1: 12px;
+  --r2: 8px;
+  --gap: 12px;
+  --ease: cubic-bezier(.2, .8, .2, 1);
+  --t-fast: 160ms;
+  --t-mid: 240ms;
+  --shadow: 0 1px 2px rgba(27, 42, 36, .06);
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--canvas); color: var(--ink);
+  font: 14px/1.5 "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+button {
+  font: inherit; color: inherit; cursor: pointer;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--r2); padding: 6px 12px;
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+button:hover { border-color: var(--mint); background: var(--mint-soft); }
+button[aria-pressed="true"] { border-color: var(--mint); background: var(--mint-soft); color: var(--mint); }
+input, select {
+  font: inherit; color: inherit; background: var(--card);
+  border: 1px solid var(--line); border-radius: var(--r2); padding: 5px 8px; width: 100%;
+}
+input[type="checkbox"] { width: auto; }
+a { color: var(--mint); }

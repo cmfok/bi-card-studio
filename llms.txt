@@ -1,0 +1,23 @@
+# bi-card-studio — 卡片式 BI 看板搭建平台（纯前端）
+
+是什么：先设计「卡片」（尺寸／元素／数据位），保存即注册进卡片库；再把已注册卡拉上看板版面、
+给数据位绑指标，自动取数呈现。桌面大屏与手机端各出一套排法。卡片 = 类型 + 底座样式 + 面 + 元素 + 动效，三轴分离。
+
+怎么装：未发布到 npm。`cd 搭建器 && npm ci && npm run build`，再用任意静态服务器指向 `dist/`
+（`python -m http.server 8080 --directory dist` 或 `npx vite preview`）。开发模式 `npm run dev`。
+入口四页：`studio.html` 卡片工作台 · `cards.html` 卡片库 · `index.html` 看板编辑台 · `view.html` 渲染页。
+
+有什么能力：8px 步长吸附与落点坐标读数 · 五种底座样式与六类元素分离 · 11 种本地打包 ECharts 图型 ·
+GridStack 100 列格制画布与拖角改跨度 · 内容驱动高度 · 版面 JSON 存取还原 · 窄屏断点重排 ·
+字号可选随容器缩放（cqw） · 交付判据脚本（16＋19 条真渲染断言，非 200 即过）。
+
+配置在哪：`搭建器/public/consumer.config.js`（`name` / `apiBase` / `credHeader` / `credKey` /
+`endpoints[{key,label,path}]`）。数据前缀、端点清单、凭证头名与存储键全由该文件提供，
+平台不写死任何消费方地址；缺配置时 fail-closed 如实报错，不回落默认值。细则见 `docs/CONSUMER-CONTRACT.md`。
+
+权限纪律：平台不判权。判定在使用方数据服务层，逐次生效；服务端返回 `***` 时前端原样显示，
+不补零、不猜数、不用样例冒充真值；未登录／身份未识别／无权限／不可达四类分开报。
+
+当前边界：卡片与版面只存本机 localStorage（服务端表未建）；只有「普通」卡类型，
+翻转／拆分／横滑与动效库、卡间联动、批量导入导出、主题注入均未实现；登录态取真值未实测。
+License：MIT。

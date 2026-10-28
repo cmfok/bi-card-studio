@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>卡片工作台 · 卡片式看板搭建平台</title>
+</head>
+<body>
+<div class="studio">
+  <div class="top">
+    <h1>卡片工作台</h1>
+    <span class="asof">在这里设计一张卡片长什么样，保存＝注册到看板</span>
+    <span class="sp"></span>
+    <button id="new" type="button">新卡片</button>
+    <button id="save" type="button">保存并注册</button>
+    <button id="cards" type="button">卡片库</button>
+    <button id="liblink" type="button" hidden>去看板摆卡 →</button>
+  </div>
+  <div class="studio-main">
+    <div class="studio-side" id="lib"></div>
+    <div class="studio-canvas"><div id="stage"></div></div>
+    <div class="studio-side r" id="props"></div>
+  </div>
+  <div class="top"><span class="asof" id="dims">卡片 320 × 200 px</span><span class="sp"></span><span class="asof" id="tip">左边点一个元素，它会出现在底座正中；拖动时出网格，松手自动吸附。</span></div>
+</div>
+<!-- 消费方接入配置：工作台本体不取数，但元素预览与卡片渲染共用同一套端点声明，统一注入 -->
+<script src="./consumer.config.js"></script>
+<script type="module" src="./src/studio.js"></script>
+</body>
+</html>

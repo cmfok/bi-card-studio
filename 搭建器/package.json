@@ -1,0 +1,26 @@
+{
+  "name": "bi-card-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "description": "卡片式 BI 看板搭建平台：卡片工作台＋卡片库＋看板编辑台＋渲染页，数据前缀与端点清单由消费方配置注入",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cmfok/bi-card-studio.git"
+  },
+  "bugs": "https://github.com/cmfok/bi-card-studio/issues",
+  "homepage": "https://github.com/cmfok/bi-card-studio#readme",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "echarts": "^5.5.1",
+    "gridstack": "^14.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.4.11"
+  }
+}

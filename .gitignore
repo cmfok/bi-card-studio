@@ -1,0 +1,24 @@
+# 依赖与构建产物
+node_modules/
+dist/
+build/
+
+# 中间产物与本地运行态
+output/
+*.log
+*.local.*
+
+# 凭证与环境（禁入库）
+.env
+.env.*
+!*.example
+
+# 系统与编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>卡片库 · 卡片式看板搭建平台</title>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <h1>卡片库</h1>
+    <span class="asof">这里是在工作台注册过的卡片；看板只从这张表里取卡</span>
+    <span class="sp"></span>
+    <button id="new" type="button">做新卡片</button>
+    <button id="board" type="button">去看板摆卡 →</button>
+  </div>
+  <div class="card-list" id="list"></div>
+</div>
+<!-- 消费方接入配置：卡片库渲染共用 cardview，统一注入 -->
+<script src="./consumer.config.js"></script>
+<script type="module" src="./src/cards-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>卡片式看板搭建平台</title>
+</head>
+<body>
+<div class="shell">
+  <div class="top">
+    <h1>卡片式看板搭建平台</h1>
+    <input id="name" style="width:150px" aria-label="版面名称">
+    <button id="mode" type="button" aria-pressed="false">新组件 → 格子（自动吸附）</button>
+    <button id="tofloat" type="button" disabled>选中项转浮层</button>
+    <button id="delsel" type="button" disabled>删除选中</button>
+    <button id="save" type="button">保存版面</button>
+    <button id="export" type="button">导出版面 JSON</button>
+    <button id="viewlink" type="button">看渲染页 →</button>
+    <span class="sp"></span>
+    <span class="asof" id="asof"></span>
+  </div>
+  <div class="panes">
+    <div class="pane" id="palette" aria-label="组件库"></div>
+    <div class="mid"><div class="grid-stack" id="canvas"></div></div>
+    <div class="pane pane-r" id="props" aria-label="属性面板"></div>
+  </div>
+  <div class="top" style="border-top:1px solid var(--line);border-bottom:0">
+    <span class="asof">起手板式：</span>
+    <span id="presets" class="presets"></span>
+    <span class="sp"></span>
+    <span class="asof" id="tip"></span>
+  </div>
+</div>
+<!-- 消费方接入配置（public/consumer.config.js）：数据前缀·凭证头名·端点清单的唯一来源，
+     必须先于应用脚本加载；缺它则取数一律如实报「缺消费方接入配置」，不回落默认地址。 -->
+<script src="./consumer.config.js"></script>
+<script type="module" src="./src/editor.js"></script>
+</body>
+</html>
